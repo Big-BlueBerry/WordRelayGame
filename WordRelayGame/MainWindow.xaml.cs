@@ -28,7 +28,7 @@ namespace WordRelayGame
 
         private void Init()
         {
-            wordLabel.Content = "섹스";
+            wordLabel.Content = "개량";
         }
 
         private void Input_KeyDown(object sender, KeyEventArgs e)
@@ -51,7 +51,16 @@ namespace WordRelayGame
         {
             String label = wordLabel.Content.ToString().Trim();
 
-            return (string.IsNullOrWhiteSpace(label)) || (label.Last() == ch);
+            return (string.IsNullOrWhiteSpace(label)) || CompareChar(ch, label.Last());
+        }
+
+        private Boolean CompareChar(char userFirst, char labelLast)
+        {
+            Letter letter = Korean.ParseChar(labelLast);
+            letter = Korean.TwoVoice(letter);
+            labelLast = Korean.MergeLetter(letter);
+
+            return userFirst == labelLast;
         }
     }
 }
