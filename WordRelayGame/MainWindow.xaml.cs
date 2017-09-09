@@ -51,7 +51,7 @@ namespace WordRelayGame
         {
             String label = wordLabel.Content.ToString().Trim();
 
-            return (label == "") || (label[label.Length - 1] == ch);
+            return (string.IsNullOrWhiteSpace(label)) || (label.Last() == ch);
         }
     }
 }
